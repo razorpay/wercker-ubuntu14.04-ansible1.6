@@ -1,5 +1,5 @@
 name: ubuntu14.04-ansible1.6
-version: 1.0.2
+version: 1.0.3
 description: Ubuntu 14.04 with Ansible 1.6
 inherits: ruudk/ubuntu14.04@1.0.0
 type: main
