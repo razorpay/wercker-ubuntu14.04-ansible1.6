@@ -1,7 +1,7 @@
 name: ubuntu14.04-ansible1.6
 version: 1.0.2
 description: Ubuntu 14.04 with Ansible 1.6
-inherits: wercker/box-default
+inherits: wercker/ubuntu12.04-webessentials@0.0.5
 type: main
 platform: ubuntu@12.04
 keywords:
@@ -10,7 +10,13 @@ keywords:
   - trusty
   - ansible
 packages:
-  - ansible@1.6.1
+  - ansible@1.6.2
 script: |
   sudo apt-get update
-  sudo apt-get install -y ansible=1.6.1
+  sudo apt-get install curl git build-essential libyaml-dev python-dev python-pip
+  sudo pip install paramiko PyYAML jinja2 httplib2
+  git clone git://github.com/ansible/ansible.git
+  cd ansible
+  git checkout v1.6.2
+  sudo make install
+  type ansible || { echo "ansible not found"; exit 1; }
