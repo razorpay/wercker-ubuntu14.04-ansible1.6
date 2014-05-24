@@ -1,0 +1,16 @@
+name: ubuntu14.04-ansible1.6
+version: 1.0.2
+description: Ubuntu 14.04 with Ansible 1.6
+inherits: wercker/box-default
+type: main
+platform: ubuntu@12.04
+keywords:
+  - ubuntu
+  - 14.04
+  - trusty
+  - ansible
+packages:
+  - ansible@1.6.1
+script: |
+  sudo apt-get update
+  sudo apt-get install -y ansible=1.6.1
