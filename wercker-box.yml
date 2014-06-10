@@ -12,6 +12,7 @@ keywords:
   - node
 packages:
   - ansible@1.6.2
+  - node@0.10.29
 script: |
   sudo apt-get update
   sudo apt-get install curl git build-essential libyaml-dev python-dev python-pip wget
