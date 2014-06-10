@@ -3,20 +3,34 @@ version: 1.0.3
 description: Ubuntu 14.04 with Ansible 1.6
 inherits: ruudk/ubuntu14.04@1.0.0
 type: main
-platform: ubuntu@12.04
+platform: ubuntu@14.04
 keywords:
   - ubuntu
   - 14.04
   - trusty
   - ansible
+  - node
 packages:
   - ansible@1.6.2
 script: |
   sudo apt-get update
-  sudo apt-get install curl git build-essential libyaml-dev python-dev python-pip
-  sudo pip install paramiko PyYAML jinja2 httplib2
+  sudo apt-get install curl git build-essential libyaml-dev python-dev python-pip wget
+  sudo pip install paramiko PyYAML jinja2 httplib2 boto
   git clone git://github.com/ansible/ansible.git
   cd ansible
   git checkout v1.6.2
   sudo make install
   type ansible || { echo "ansible not found"; exit 1; }
+  export NODEVERSION=0.10.29
+  cd $HOME
+  mkdir nodeinstall
+  cd nodeinstall
+  wget http://nodejs.org/dist/v$NODEVERSION/node-v$NODEVERSION.tar.gz
+  tar xzvf node-v$NODEVERSION.tar.gz
+  cd node-v$NODEVERSION
+  ./configure
+  make
+  sudo make install
+  cd $HOME
+  rm -fr nodeinstall
+  node -v
