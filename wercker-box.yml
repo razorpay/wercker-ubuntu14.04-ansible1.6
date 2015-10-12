@@ -12,7 +12,7 @@ keywords:
   - node
 packages:
   - ansible@1.6.2
-  - node@0.10.29
+  - nodejs@4.1.2
 script: |
   sudo apt-get update
   sudo apt-get install curl git build-essential libyaml-dev python-dev python-pip wget
@@ -22,7 +22,7 @@ script: |
   git checkout v1.6.2
   sudo make install
   type ansible || { echo "ansible not found"; exit 1; }
-  export NODEVERSION=0.10.29
+  export NODEVERSION=4.1.2
   cd $HOME
   mkdir nodeinstall
   cd nodeinstall
